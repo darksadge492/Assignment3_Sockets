@@ -294,6 +294,9 @@
 <!--animation__click="property: rotation; from: 0 0 0; to: 0 180 0; startEvents:click; dur:850"               color:#224952              color:#c2b280-->
             <!--Puzzle Picture(jumbled)-->
             <a-entity id="puzzle" position="-2.5 2 -4">
+                <a-entity id="canArmControlsTextPlane"  geometry="primitive:plane; width:3; height:0.5;" position="0.5 1.5 0" rotation="0 0 0" material="color:#000000;">
+                    <a-text value="JUMBLE PUZZLE"   position="-1 0 0"></a-text>
+                </a-entity>
 <!--Corner-->   <a-entity id="card_1" class="card interactive" position="0 0 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
 <!--Bottom-->   <a-entity id="card_2" class="card interactive" position="0.5 0 0"    geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>
 <!--Corner-->   <a-entity id="card_3" class="card interactive" position="1 0 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
@@ -307,6 +310,9 @@
 
             <!--Solution Picture(sorted)-->
             <a-entity id="solution" position="1 2 -4">
+                <a-entity id="canArmControlsTextPlane"  geometry="primitive:plane; width:3; height:0.5;" position="0.5 1.5 0" rotation="0 0 0" material="color:#000000;">
+                    <a-text value="PUZZLE SOLUTION"   position="-0.85 0 0"></a-text>
+                </a-entity>
 <!--Corner-->   <a-entity position="0 0 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>
 <!--Bottom-->   <a-entity position="0.5 0 0"    geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
 <!--Corner-->   <a-entity position="1 0 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>

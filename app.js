@@ -19,16 +19,6 @@ io.on('connection', (socket) => {
         console.log(socket.id + " is disconnected. BYE!");
     });
 
-    socket.on('red', (data) => {
-        console.log('red event triggered');
-        io.emit('color_change', {r:255, g:0, b:0});
-    });
-
-    socket.on('blue', (data) => {
-        console.log('blue event triggered');
-        io.emit('color_change', {r:0, g:0, b:255});
-    });
-
     socket.on('flip', () => {
         console.log('cooperative flip event triggered(app.js)');
         io.emit('rotate_first');

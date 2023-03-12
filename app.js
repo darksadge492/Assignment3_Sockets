@@ -63,6 +63,11 @@ io.on('connection', (socket) => {
         console.log('cooperative flip event triggered(app.js)');
         io.emit('rotate_ninth');
     });
+
+    socket.on('winCheck', () => {
+        console.log('win check event triggered(app.js)');
+        io.emit('update_win');
+    });
 });
 
 app.use(express.static(__dirname + '/public'));

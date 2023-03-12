@@ -1,30 +1,70 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Competitive</title>
+        <title>Cooperative</title>
         <meta charset="utf-8" />
         <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+
 
         <!-- //VERY HANDY! https://socket.io/docs/v3/emit-cheatsheet/  -->
         <!-- since we are going to put teh socket.io code in a component to make sure aframe is loaded before
         we start doing anything it, we will put the code in the header so that teh component "exists" before we 
         use it as an attribute on a-scene -->
         <script src="/socket.io/socket.io.js"></script>
+
         <script>
             AFRAME.registerComponent('experience-manager', {
                 init: function () {
-                    const socket = io();
+                    //VARIBALES FOR CARD FLIPPING(BOOLEANS)
+                    const socket    = io();
+                    var flipped1    = false;
+                    var flipped2    = true;
+                    var flipped3    = false;
+                    var flipped4    = true;
+                    var flipped5    = false;
+                    var flipped6    = true;
+                    var flipped7    = false;
+                    var flipped8    = true;
+                    var flipped9    = false;
 
-                socket.on('connect', (userData) => {
+                    socket.on('connect', (userData) => {
                     console.log('I exist!');
 
                     //put code here so that we know that socket.io has initailized ...
-                    document.querySelector('#red_button').querySelector('.button').addEventListener('click', function(){
-                        socket.emit('red');
+                    document.querySelector('#puzzle').querySelector('#card_1').addEventListener('click', function(){
+                        socket.emit('flip');
                     });
 
-                    document.querySelector('#blue_button').querySelector('.button').addEventListener('click', function(){
-                        socket.emit('blue');
+                    document.querySelector('#puzzle').querySelector('#card_2').addEventListener('click', function(){
+                        socket.emit('flap');
+                    });
+
+                    document.querySelector('#puzzle').querySelector('#card_3').addEventListener('click', function(){
+                        socket.emit('flop');
+                    });
+
+                    document.querySelector('#puzzle').querySelector('#card_4').addEventListener('click', function(){
+                        socket.emit('flep');
+                    });
+
+                    document.querySelector('#puzzle').querySelector('#card_5').addEventListener('click', function(){
+                        socket.emit('flyp');
+                    });
+
+                    document.querySelector('#puzzle').querySelector('#card_6').addEventListener('click', function(){
+                        socket.emit('flup');
+                    });
+
+                    document.querySelector('#puzzle').querySelector('#card_7').addEventListener('click', function(){
+                        socket.emit('fling');
+                    });
+
+                    document.querySelector('#puzzle').querySelector('#card_8').addEventListener('click', function(){
+                        socket.emit('flang');
+                    });
+
+                    document.querySelector('#puzzle').querySelector('#card_9').addEventListener('click', function(){
+                        socket.emit('flung');
                     });
                 });
 
@@ -32,19 +72,178 @@
                 socket.on('color_change', (data) => {
                     let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
                     console.log('color_change:' + colorStr);
-                    //document.body.style.backgroundColor = colorStr;
                     document.querySelector('a-scene').setAttribute('background', {color:colorStr});
                 });
+
+                //ROTATE FIRST CARD
+                socket.on('rotate_first', () => {
+
+                    if(flipped1 == true){
+                        document.querySelector('#puzzle').querySelector('#card_1').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_1').setAttribute('material', {color: '#c2b280'});
+                        flipped1 = false;
+                        console.log("Flipped = " + flipped1);
+                    }else if(flipped1 == false){
+                        document.querySelector('#puzzle').querySelector('#card_1').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_1').setAttribute('material', {color: '#224952'});
+                        flipped1 = true;
+                        console.log("Flipped = " + flipped1);
+                    }
+
+                    console.log('ROTATING CARD 1!!!');
+                });
+
+                //ROTATE SECOND CARD
+                socket.on('rotate_second', () => {
+
+                    if(flipped2 == true){
+                        document.querySelector('#puzzle').querySelector('#card_2').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_2').setAttribute('material', {color: '#c2b280'});
+                        flipped2 = false;
+                        console.log("Flipped = " + flipped2);
+                    }else if(flipped2 == false){
+                        document.querySelector('#puzzle').querySelector('#card_2').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_2').setAttribute('material', {color: '#224952'});
+                        flipped2 = true;
+                        console.log("Flipped = " + flipped2);
+                    }
+
+                    console.log('ROTATING CARD 2!!!');
+                });
+
+                //ROTATE THIRD CARD
+                socket.on('rotate_third', () => {
+
+                    if(flipped3 == true){
+                        document.querySelector('#puzzle').querySelector('#card_3').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_3').setAttribute('material', {color: '#c2b280'});
+                        flipped3 = false;
+                        console.log("Flipped = " + flipped3);
+                    }else if(flipped3 == false){
+                        document.querySelector('#puzzle').querySelector('#card_3').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_3').setAttribute('material', {color: '#224952'});
+                        flipped3 = true;
+                        console.log("Flipped = " + flipped3);
+                    }
+
+                    console.log('ROTATING CARD 3!!!');
+                });
+
+                //ROTATE FOURTH CARD
+                socket.on('rotate_fourth', () => {
+
+                    if(flipped4 == true){
+                        document.querySelector('#puzzle').querySelector('#card_4').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_4').setAttribute('material', {color: '#c2b280'});
+                        flipped4 = false;
+                        console.log("Flipped = " + flipped4);
+                    }else if(flipped4 == false){
+                        document.querySelector('#puzzle').querySelector('#card_4').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_4').setAttribute('material', {color: '#224952'});
+                        flipped4 = true;
+                        console.log("Flipped = " + flipped4);
+                    }
+
+                    console.log('ROTATING CARD 4!!!');
+                });
+
+                //ROTATE FIFTH CARD
+                socket.on('rotate_fifth', () => {
+
+                    if(flipped5 == true){
+                        document.querySelector('#puzzle').querySelector('#card_5').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_5').setAttribute('material', {color: '#c2b280'});
+                        flipped5 = false;
+                        console.log("Flipped = " + flipped5);
+                    }else if(flipped5 == false){
+                        document.querySelector('#puzzle').querySelector('#card_5').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_5').setAttribute('material', {color: '#224952'});
+                        flipped5 = true;
+                        console.log("Flipped = " + flipped5);
+                    }
+
+                    console.log('ROTATING CARD 5!!!');
+                });
+
+                //ROTATE SIXTH CARD
+                socket.on('rotate_sixth', () => {
+
+                    if(flipped6 == true){
+                        document.querySelector('#puzzle').querySelector('#card_6').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_6').setAttribute('material', {color: '#c2b280'});
+                        flipped6 = false;
+                        console.log("Flipped = " + flipped6);
+                    }else if(flipped6 == false){
+                        document.querySelector('#puzzle').querySelector('#card_6').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_6').setAttribute('material', {color: '#224952'});
+                        flipped6 = true;
+                        console.log("Flipped = " + flipped6);
+                    }
+
+                    console.log('ROTATING CARD 6!!!');
+                });
+
+                //ROTATE SEVENTH CARD
+                socket.on('rotate_seventh', () => {
+
+                    if(flipped7 == true){
+                        document.querySelector('#puzzle').querySelector('#card_7').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_7').setAttribute('material', {color: '#c2b280'});
+                        flipped7 = false;
+                        console.log("Flipped = " + flipped7);
+                    }else if(flipped7 == false){
+                        document.querySelector('#puzzle').querySelector('#card_7').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_7').setAttribute('material', {color: '#224952'});
+                        flipped7 = true;
+                        console.log("Flipped = " + flipped7);
+                    }
+
+                    console.log('ROTATING CARD 7!!!');
+                });
+
+                //ROTATE EIGHTH CARD
+                socket.on('rotate_eighth', () => {
+
+                    if(flipped8 == true){
+                        document.querySelector('#puzzle').querySelector('#card_8').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_8').setAttribute('material', {color: '#c2b280'});
+                        flipped8 = false;
+                        console.log("Flipped = " + flipped8);
+                    }else if(flipped8 == false){
+                        document.querySelector('#puzzle').querySelector('#card_8').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_8').setAttribute('material', {color: '#224952'});
+                        flipped8 = true;
+                        console.log("Flipped = " + flipped8);
+                    }
+
+                    console.log('ROTATING CARD 8!!!');
+                });
+
+                //ROTATE NINTH CARD
+                socket.on('rotate_ninth', () => {
+
+                    if(flipped9 == true){
+                        document.querySelector('#puzzle').querySelector('#card_9').setAttribute('animation', {'property': 'rotation', from: '0 180 0', to: '0 0 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_9').setAttribute('material', {color: '#c2b280'});
+                        flipped9 = false;
+                        console.log("Flipped = " + flipped9);
+                    }else if(flipped9 == false){
+                        document.querySelector('#puzzle').querySelector('#card_9').setAttribute('animation', {'property': 'rotation', from: '0 0 0', to: '0 180 0', dur:850});
+                        document.querySelector('#puzzle').querySelector('#card_9').setAttribute('material', {color: '#224952'});
+                        flipped9 = true;
+                        console.log("Flipped = " + flipped9);
+                    }
+
+                    console.log('ROTATING CARD 9!!!');
+                });
+
                 }
-            })
+            });
         </script>
 
     </head>
 
     <body>
-        <!-- our buttond to tell others -->
-        <!-- <button id="red" style="background-color:rgb(255, 0, 0); color:rgb(255, 255, 255)">RED</button>
-        <button id="blue" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">BLUE</button> -->
 
         <a-scene experience-manager background="color:rgb(0, 0, 0);">
             <a-entity camera wasd-controls look-controls position="0 1.6 0">
@@ -54,21 +253,65 @@
             <a-entity class="ground"  geometry="primitive:plane; width:14; height:14;" material="color:white;" position="0 0.01 0" rotation="-90 0 0"></a-entity>
 
             <!-- red button -->
-            <a-entity id="red_button" position="2 0.6 -1">
+            <a-entity id="red_button" position="0 0.6 -3" rotation="0 0 0">
                 <a-entity class="button interactive" position="0 0.6 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
                             animation__mouseenter="property:material.color; type:color; to:rgb(255, 0, 0); startEvents:mouseenter; dur:200"
                             animation__mouseleave="property:material.color; type:color; to:rgb(255, 100, 100); startEvents:mouseleave; dur:200"
-                            animation__click="property:position.y; from:0.55; to:0.6; startEvents:click; dur:300" shadow></a-entity>
-                <a-entity position="0 0.3 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;" material="color:rgb(255, 255, 255)" shadow></a-entity>
+                            animation__click="property:position.y; from:0.55; to:0.6; startEvents:click; dur:300"
+                            onclick="window.location.href = '/index.html';" shadow></a-entity>
+                <a-entity position="0 0.3 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;" material="color:rgb(255, 255, 255)" shadow>
+                    <a-entity id="coopHomeButton"  geometry="primitive:plane; width:1.9; height:0.3;" position="0 0 0.3" rotation="0 0 0" material="color:#000000;">
+                        <a-text value="RETURN TO HOME"   position="-0.95 0 0"></a-text>
+                    </a-entity>
+                </a-entity>
             </a-entity>
 
-            <!-- blue button -->
-            <a-entity id="blue_button" position="-2 0.6 -1">
-                <a-entity class="button interactive" position="0 0.6 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(100, 100, 255)"
-                            animation__mouseenter="property:material.color; type:color; to:rgb(0, 0, 255); startEvents:mouseenter; dur:200"
-                            animation__mouseleave="property:material.color; type:color; to:rgb(100, 100, 255); startEvents:mouseleave; dur:200"
-                            animation__click="property:position.y; from:0.55; to:0.6; startEvents:click; dur:300" shadow></a-entity>
-                <a-entity position="0 0.3 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;" material="color:rgb(255, 255, 255)" shadow></a-entity>
+            <!-- Team X: Button -->
+            <a-entity id="red_button" position="0 0.6 -3" rotation="0 0 0">
+                <a-entity class="button interactive" position="0 0.6 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(255, 0, 0); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(255, 100, 100); startEvents:mouseleave; dur:200"
+                            animation__click="property:position.y; from:0.55; to:0.6; startEvents:click; dur:300"
+                            onclick="window.location.href = '/index.html';" shadow></a-entity>
+                <a-entity position="0 0.3 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;" material="color:rgb(255, 255, 255)" shadow>
+                    <a-entity id="coopHomeButton"  geometry="primitive:plane; width:1.9; height:0.3;" position="0 0 0.3" rotation="0 0 0" material="color:#000000;">
+                        <a-text value="RETURN TO HOME"   position="-0.95 0 0"></a-text>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+
+            <!-- Team O: Button -->
+            <a-entity id="red_button" position="0 0.6 -3" rotation="0 0 0">
+                <a-entity class="button interactive" position="0 0.6 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(255, 0, 0); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(255, 100, 100); startEvents:mouseleave; dur:200"
+                            animation__click="property:position.y; from:0.55; to:0.6; startEvents:click; dur:300"
+                            onclick="window.location.href = '/index.html';" shadow></a-entity>
+                <a-entity position="0 0.3 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;" material="color:rgb(255, 255, 255)" shadow>
+                    <a-entity id="coopHomeButton"  geometry="primitive:plane; width:1.9; height:0.3;" position="0 0 0.3" rotation="0 0 0" material="color:#000000;">
+                        <a-text value="RETURN TO HOME"   position="-0.95 0 0"></a-text>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+
+            <!--Tic Tac Toe Board-->
+            <a-entity id="tictactoe" position="-0.5 2 -4">
+                <a-entity id="TicTacToeTextPlane"  geometry="primitive:plane; width:1.5; height:0.5;" position="0.85 1.5 0" rotation="0 0 0" material="color:#000000;">
+                    <a-text value="TIC TAC TOE"   position="-1 0 0"></a-text>
+                </a-entity>
+<!--Corner-->   <a-entity id="card_1" class="card interactive" position="0 0 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
+<!--Bottom-->   <a-entity id="card_2" class="card interactive" position="0.5 0 0"    geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>
+<!--Corner-->   <a-entity id="card_3" class="card interactive" position="1 0 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
+<!--Middle-->   <a-entity id="card_4" class="card interactive" position="0 0.5 0"    geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>
+<!--Middle-->   <a-entity id="card_5" class="card interactive" position="0.5 0.5 0"  geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
+<!--Middle-->   <a-entity id="card_6" class="card interactive" position="1 0.5 0"    geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>
+<!--Corner-->   <a-entity id="card_7" class="card interactive" position="0 1 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
+<!--Middle-->   <a-entity id="card_8" class="card interactive" position="0.5 1 0"    geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>
+<!--Corner-->   <a-entity id="card_9" class="card interactive" position="1 1 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#c2b280" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="WinTextPlane"  geometry="primitive:plane; width:3; height:0.5;" position="-1.5 5 -5" rotation="0 0 0" material="color:#000000;" visible="false">
+                <a-text value="YOU WIN CONGRATULATIONS!!!"   position="0 0 0"></a-text>
             </a-entity>
         </a-scene>
     </body>

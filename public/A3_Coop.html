@@ -91,6 +91,7 @@
                     }
 
                     console.log('ROTATING CARD 1!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE SECOND CARD
@@ -109,6 +110,7 @@
                     }
 
                     console.log('ROTATING CARD 2!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE THIRD CARD
@@ -127,6 +129,7 @@
                     }
 
                     console.log('ROTATING CARD 3!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE FOURTH CARD
@@ -145,6 +148,7 @@
                     }
 
                     console.log('ROTATING CARD 4!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE FIFTH CARD
@@ -163,6 +167,7 @@
                     }
 
                     console.log('ROTATING CARD 5!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE SIXTH CARD
@@ -181,6 +186,7 @@
                     }
 
                     console.log('ROTATING CARD 6!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE SEVENTH CARD
@@ -199,6 +205,7 @@
                     }
 
                     console.log('ROTATING CARD 7!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE EIGHTH CARD
@@ -217,6 +224,7 @@
                     }
 
                     console.log('ROTATING CARD 8!!!');
+                    socket.emit('winCheck');
                 });
 
                 //ROTATE NINTH CARD
@@ -235,16 +243,35 @@
                     }
 
                     console.log('ROTATING CARD 9!!!');
+                    socket.emit('winCheck');
                 });
+
+                //ROTATE THIRD CARD
+                socket.on('update_win', () => {
+
+                    if(flipped1 == true){
+                        if(flipped2 == false){
+                            if(flipped3 == true){
+                                if(flipped4 == false){
+                                    if(flipped5 == true){
+                                        if(flipped6 == false){
+                                            if(flipped7 == true){
+                                                if(flipped8 == false){
+                                                    if(flipped9 == true){
+                                                        document.querySelector('#WinTextPlane').setAttribute('visible', true);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                });
+
                 }
-
-
-
-                //update: function () {
-
-                    //WIN CHECK
-
-                //}
             });
         </script>
 
@@ -305,7 +332,7 @@
 <!--Corner-->   <a-entity position="1 1 0"      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;" material="color:#224952" shadow></a-entity>
             </a-entity>
 
-            <a-entity id="WinTextPlane"  geometry="primitive:plane; width:3; height:0.5;" position="-1.5 5 -5" rotation="0 0 0" material="color:#000000;">
+            <a-entity id="WinTextPlane"  geometry="primitive:plane; width:3; height:0.5;" position="-1.5 5 -5" rotation="0 0 0" material="color:#000000;" visible="false">
                 <a-text value="YOU WIN CONGRATULATIONS!!!"   position="0 0 0"></a-text>
             </a-entity>
         </a-scene>

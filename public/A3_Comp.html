@@ -77,18 +77,6 @@
                         });
                     });
 
-                    //RESET TIC TAC TOE
-                    socket.on('reset_tictactoe', () => {
-                        tictacArray.fill("_");
-                        console.log(team);
-                        team = "_";
-                        console.log(tictacArray);
-                        socket.emit('updateText');
-                        console.log('RESETTING TIC TAC TOE!!!');
-                        document.querySelector('#TeamXWinTextPlane').setAttribute('visible', false);
-                        document.querySelector('#TeamOWinTextPlane').setAttribute('visible', false);
-                    });
-
                     socket.on('updateText', () => {
                         console.log("UPDATING TEXT!!!");
                         let arrayLength = tictacArray.length;
@@ -131,64 +119,138 @@
                                     document.querySelector('#box9Text').setAttribute('value', tictacArray[i]);
                                     console.log(i);
                                     break;
+                                default:
+                                    console.log("UPDATE TEXT ERROR");
+                                    break;
                             }
                                 
                         }
+                    });
+
+                    //RESET TIC TAC TOE
+                    socket.on('reset_tictactoe', () => {
+                        tictacArray.fill("_");
+                        console.log(team);
+                        team = "_";
+                        console.log(tictacArray);
+                        socket.emit('updateText');
+                        console.log('RESETTING TIC TAC TOE!!!');
+                        document.querySelector('#TeamXWinTextPlane').setAttribute('visible', false);
+                        document.querySelector('#TeamOWinTextPlane').setAttribute('visible', false);
                     });
 
                     socket.on('press_ONE', () => {
                         tictacArray[0] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_TWO', () => {
                         tictacArray[1] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_THREE', () => {
                         tictacArray[2] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_FOUR', () => {
                         tictacArray[3] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_FIVE', () => {
                         tictacArray[4] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_SIX', () => {
                         tictacArray[5] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_SEVEN', () => {
                         tictacArray[6] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_EIGHT', () => {
                         tictacArray[7] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
 
                     socket.on('press_NINE', () => {
                         tictacArray[8] = team;
                         console.log(tictacArray);
                         socket.emit('updateText');
+                        socket.emit('Xwin_Check');
+                        socket.emit('Owin_Check');
                     });
+
+                    socket.on('Xwin_Check', () => {
+                        if(tictacArray[0] == 'X' && tictacArray[1] == 'X' && tictacArray[2] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[3] == 'X' && tictacArray[4] == 'X' && tictacArray[5] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[6] == 'X' && tictacArray[7] == 'X' && tictacArray[8] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[0] == 'X' && tictacArray[3] == 'X' && tictacArray[6] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[1] == 'X' && tictacArray[4] == 'X' && tictacArray[7] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[2] == 'X' && tictacArray[5] == 'X' && tictacArray[8] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[0] == 'X' && tictacArray[4] == 'X' && tictacArray[8] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[6] == 'X' && tictacArray[4] == 'X' && tictacArray[2] == 'X'){
+                            document.querySelector('#TeamXWinTextPlane').setAttribute('visible', true);
+                        }
+                    });
+
+                    socket.on('Owin_Check', () => {
+                        if(tictacArray[0] == 'O' && tictacArray[1] == 'O' && tictacArray[2] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[3] == 'O' && tictacArray[4] == 'O' && tictacArray[5] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[6] == 'O' && tictacArray[7] == 'O' && tictacArray[8] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[0] == 'O' && tictacArray[3] == 'O' && tictacArray[6] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[1] == 'O' && tictacArray[4] == 'O' && tictacArray[7] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[2] == 'O' && tictacArray[5] == 'O' && tictacArray[8] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[0] == 'O' && tictacArray[4] == 'O' && tictacArray[8] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }else if(tictacArray[6] == 'O' && tictacArray[4] == 'O' && tictacArray[2] == 'O'){
+                            document.querySelector('#TeamOWinTextPlane').setAttribute('visible', true);
+                        }
+                    });
+
                 }
             });
         </script>
